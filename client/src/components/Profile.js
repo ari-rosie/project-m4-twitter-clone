@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+
 import { CurrentUserContext } from './CurrentUserContext';
+import ProfilePosts from './profile/ProfilePosts';
 
 const Profile = () => {
     const { currentUser } = useContext(CurrentUserContext);
@@ -20,8 +21,9 @@ const Profile = () => {
         } else 
             setProfileFeed(currentUser);
     }, [profileId]);
-
+    console.log(profileFeed);
     const { 
+        handle,
         displayName, 
         avatarSrc, 
         bannerSrc, 
@@ -41,6 +43,7 @@ const Profile = () => {
             <p>{bio}</p>
             <p><span>{numFollowing}</span>Following</p>
             <p><span>{numFollowers}</span>Followers</p>
+            <ProfilePosts userHandle={handle}/>
         </>
     );
 };

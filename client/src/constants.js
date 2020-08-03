@@ -8,3 +8,5 @@ export const LOGO = {
 };
 
 export const NAV_ICON_SIZE = 25;
+
+export const MAX_CHAR_STATUS = 280;

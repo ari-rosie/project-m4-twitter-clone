@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CurrentUserContext } from './CurrentUserContext';
 
 import Tweet from './Tweet';
+import StatusInput from './homeFeed/StatusInput';
 import { FetchData } from '../hooks';
 
 const HomeFeed = () => {
@@ -11,18 +12,13 @@ const HomeFeed = () => {
 
     FetchData(`/api/me/home-feed`, setTweetsData, status);    
 
-    if (tweetsData){
         return (
             <>
-                {tweetsData.tweetIds.map(id => {
+                <StatusInput />
+                {tweetsData ? tweetsData.tweetIds.map(id => {
                     return <Tweet key={`homeFeedTweet-${id}`} data={tweetsData.tweetsById[id]} />;
-                })};
-            </>
-        );
-    } else 
-        return (
-            <>
-                Loading...
+                })
+                : <h2>Loading...</h2>}
             </>
         );
 
