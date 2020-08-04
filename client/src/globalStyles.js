@@ -56,6 +56,13 @@ const GlobalStyle = createGlobalStyle `
     body{
         font-family: Verdana, Geneva, Tahoma, sans-serif; 
     }
+
+    a {
+        text-decoration: none;
+        color: black;
+
+    }
+
 `;
 
 export default GlobalStyle;

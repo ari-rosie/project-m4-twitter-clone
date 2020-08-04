@@ -1,49 +1,32 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 import { CurrentUserContext } from './CurrentUserContext';
 import ProfilePosts from './profile/ProfilePosts';
+import { FetchData } from '../hooks';
 
 const Profile = () => {
     const { currentUser } = useContext(CurrentUserContext);
     const { profileId } = useParams();
     const [profileFeed, setProfileFeed] = useState(currentUser);
+    const { profile } = profileFeed;
 
-    useEffect(() => {
-        if (profileId !== 'me') {
-            const fetchData = async () => {
-                const res = await fetch(`/api/${profileId}/profile`);
-                const profileData = await res.json();
-                setProfileFeed(profileData.profile);
-            }
-
-            fetchData();
-        } else 
-            setProfileFeed(currentUser);
-    }, [profileId]);
-    console.log(profileFeed);
-    const { 
-        handle,
-        displayName, 
-        avatarSrc, 
-        bannerSrc, 
-        location, 
-        bio, 
-        numFollowing, numFollowers, 
-        isFollowingYou, isBeingFollowedByYou
-    } = profileFeed;
-    
+    FetchData(`/api/${profileId}/profile`, setProfileFeed, profileId);
 
     return (
         <>
-            <img src={bannerSrc}/>
-            <h1>{displayName}</h1>
-            <img src={avatarSrc}/>
-            <p>{location}</p>
-            <p>{bio}</p>
-            <p><span>{numFollowing}</span>Following</p>
-            <p><span>{numFollowers}</span>Followers</p>
-            <ProfilePosts userHandle={handle}/>
+            {profile ? 
+            <>
+            <img src={profile.bannerSrc} alt={'banner'}/>
+            <h1>{profile.displayName} </h1>
+            <img src={profile.avatarSrc} alt={'avatar'}/>
+            <p>{profile.location}</p>
+            <p>{profile.bio}</p>
+            <p><span>{profile.numFollowing}</span>Following</p>
+            <p><span>{profile.numFollowers}</span>Followers</p>
+            <ProfilePosts userHandle={profile.handle}/>
+            </>
+            : <h2>Loading...</h2>}
         </>
     );
 };

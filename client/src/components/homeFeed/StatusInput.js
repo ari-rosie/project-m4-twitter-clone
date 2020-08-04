@@ -5,17 +5,35 @@ import { MAX_CHAR_STATUS } from '../../constants';
 const StatusInput = () => {
     const { avatarSrc } = useContext(CurrentUserContext).currentUser;
     const [charLeft, setCharLeft] = useState(MAX_CHAR_STATUS);
+    const [input, setInput] = useState('');
 
     const handleTyping = (e) => {
         setCharLeft(MAX_CHAR_STATUS - e.target.value.length);
+        setInput(e.target.value);
+    };
+
+
+    const handleSendStatus = async () => {
+        setInput('');
+        const reqObj = {
+            method: 'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({status: input})
+        }
+        const res = await fetch('/api/tweet', reqObj);
+        const data = await res.json();
+        console.log(data);
+        
     };
 
     return (
         <>
-            <img src={avatarSrc} />
-            <textarea placeholder="What's happening?" onChange={(e) => handleTyping(e)}/>
+            <img src={avatarSrc} alt={'avatar'}/>
+            <textarea placeholder="What's happening?" value={input} onChange={(e) => handleTyping(e)}/>
             <span>{charLeft}characters</span>
-            <button>Meow</button>
+            <button onClick={() => handleSendStatus()}>Meow</button>
         </>
     );
 

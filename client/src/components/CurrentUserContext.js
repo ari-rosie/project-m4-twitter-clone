@@ -16,13 +16,14 @@ export const CurrentUserProvider = ({children}) => {
                 setCurrentUser(profile.profile);
                 setStatus('idle');
             } catch (err) {
-                console.log(err)
+                setStatus(null);
+                console.log(status);
             }
         };
         fetchData();
-
+        // eslint-disable-next-line
     }, []);
 
-    return <CurrentUserContext.Provider value={{currentUser, status}}>{children}</CurrentUserContext.Provider>
+    return <CurrentUserContext.Provider value={{currentUser, status, setStatus}}>{children}</CurrentUserContext.Provider>
 };
 

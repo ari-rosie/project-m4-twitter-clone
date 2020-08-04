@@ -12,6 +12,7 @@ import HomeFeed from './HomeFeed.js';
 import Profile from './Profile';
 import { CurrentUserContext } from './CurrentUserContext.js';
 import TweetDetails from './TweetDetails.js';
+import Error500 from './Error500.js';
 
 const App = () => {
   const { status } = useContext(CurrentUserContext);
@@ -22,11 +23,11 @@ const App = () => {
         <Page>
           <Sidebar/>
           <MainContent>
-            {status === 'idle' ?
+            {status === 'idle' &&
             <Switch>
               <Route exact path='/'>
                 <HomeFeed/>
-              </Route>
+              </Route> 
               <Route path='/notifications'>notifications</Route>
               <Route path='/bookmarks'>bookmarks</Route>
               <Route path='/tweet/:tweetId'>
@@ -34,9 +35,9 @@ const App = () => {
               </Route>
               <Route path='/:profileId'>
                 <Profile />
-              </Route>
-            </Switch>
-            : console.log(status)}
+              </Route>              
+            </Switch>}
+            {status === null && <Error500 />}
           </MainContent>
         </Page>
       </Router>

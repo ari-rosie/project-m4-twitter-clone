@@ -14,7 +14,7 @@ export const FetchData = (apiUrl, setAction, renderArg) => {
         } catch (error) {
             console.log(error);
         }
-
+        // eslint-disable-next-line
     }, [renderArg]);
 
 

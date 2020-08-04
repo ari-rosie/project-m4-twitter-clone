@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import { ReactComponent as PicName } from '../assets/logo.svg';
 import { LOGO, COLORS, NAV_ICON_SIZE } from '../constants';
-import { IconHome, IconProfile, IconNotifications, IconBookmarks } from '../assets/Icons';
+import { IconHome, IconProfile, IconNotifications, IconBookmarks } from '../assets/SidebarIcons';
 import { CurrentUserContext } from './CurrentUserContext';
 
 
@@ -18,7 +18,7 @@ const Sidebar = () => {
                 <PicName viewBox={'15 0 90 90'} style={{width: LOGO.sidebarSize}}/>
                 <ul>
                     <li><IconHome size={NAV_ICON_SIZE} /><NavigationLink exact to='/'>Home</NavigationLink></li>
-                    <li><IconProfile size={NAV_ICON_SIZE}/><NavigationLink to={currentUser ? '/me' : '/not-logged-in'}>Profile</NavigationLink></li>
+                    <li><IconProfile size={NAV_ICON_SIZE}/><NavigationLink to={currentUser ? `/treasurymog` : '/not-logged-in'}>Profile</NavigationLink></li>
                     <li><IconNotifications size={NAV_ICON_SIZE}/><NavigationLink to='/notifications'>Notifications</NavigationLink></li>
                     <li><IconBookmarks size={NAV_ICON_SIZE}/><NavigationLink to='/bookmarks'>Bookmarks</NavigationLink></li>
                 </ul>
