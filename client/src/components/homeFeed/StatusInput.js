@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import styled from 'styled-components';
+
 import { CurrentUserContext } from '../CurrentUserContext';
 import { MAX_CHAR_STATUS } from '../../constants';
 
@@ -29,8 +31,8 @@ const StatusInput = () => {
     };
 
     return (
-        <>
-            <img src={avatarSrc} alt={'avatar'}/>
+        <>  <h1>Home</h1>
+            <Avatar src={avatarSrc} alt={'avatar'}/>
             <textarea placeholder="What's happening?" value={input} onChange={(e) => handleTyping(e)}/>
             <span>{charLeft}characters</span>
             <button onClick={() => handleSendStatus()}>Meow</button>
@@ -38,5 +40,9 @@ const StatusInput = () => {
     );
 
 };
+
+const Avatar = styled.img`
+    width: 60px;
+`;
 
 export default StatusInput;

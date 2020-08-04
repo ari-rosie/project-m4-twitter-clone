@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import GlobalStyle from '../globalStyles.js';
 import Sidebar from './Sidebar';
-import HomeFeed from './HomeFeed.js';
+import HomeFeed from './homeFeed/HomeFeed.js';
 import Profile from './Profile';
 import { CurrentUserContext } from './CurrentUserContext.js';
 import TweetDetails from './TweetDetails.js';

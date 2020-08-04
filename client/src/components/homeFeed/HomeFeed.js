@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { CurrentUserContext } from './CurrentUserContext';
+import { CurrentUserContext } from '../CurrentUserContext';
 
-import Tweet from './Tweet';
-import StatusInput from './homeFeed/StatusInput';
-import { FetchData } from '../hooks';
+import Tweet from '../Tweet';
+import StatusInput from './StatusInput';
+import { FetchData } from '../../hooks';
 
 const HomeFeed = () => {
     const { status } = React.useContext(CurrentUserContext);
