@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 
 import { CurrentUserContext } from '../CurrentUserContext';
-import { MAX_CHAR_STATUS } from '../../constants';
+import { MAX_CHAR_STATUS, COLORS } from '../../constants';
 
 const StatusInput = () => {
     const { avatarSrc } = useContext(CurrentUserContext).currentUser;
@@ -26,24 +26,40 @@ const StatusInput = () => {
         }
         const res = await fetch('/api/tweet', reqObj);
         const data = await res.json();
-        console.log(data);
+        window.location.reload();
         
     };
 
     return (
-        <>  <h1>Home</h1>
+        <Wrapper>  
+            <h1>Home</h1>
             <Avatar src={avatarSrc} alt={'avatar'}/>
             <textarea placeholder="What's happening?" value={input} onChange={(e) => handleTyping(e)}/>
-            <span>{charLeft}characters</span>
+            <div>{charLeft}characters</div>
             <button onClick={() => handleSendStatus()}>Meow</button>
-        </>
+        </Wrapper>
     );
 
 };
+
+const Wrapper = styled.div`
+    textarea {
+        border: none;
+        resize: none;
+        width: 400px;
+    }
+
+    button {
+        background-color: ${COLORS.primary};
+        color: white;
+    }
+`;
 
 const Avatar = styled.img`
     width: 60px;
     border-radius: 50%;
 `;
+
+
 
 export default StatusInput;

@@ -21,7 +21,7 @@ const Tweet = ({data}) => {
                     <Name onClick={(event) => {handleClick(`/${author.handle}`); event.stopPropagation();}}>{author.displayName}</Name>
                     <span>@{author.handle} - {moment(timestamp).format('MMM Do')}</span>
                 </Author>
-                <div>{status}</div>
+                <Status>{status}</Status>
                 <div>{numLikes} Likes {numRetweets} Retweets</div>
                 {media.length > 0 && <PostImg src={media[0].url}/>}
                 <TweetActionBar />
@@ -50,9 +50,14 @@ const PostImg = styled.img`
 `;
 
 const Author = styled.div`
+    margin-bottom: 20px;
     span {
-        color: lightgray;
+        color: gray;
     }
+`;
+
+const Status = styled.div`
+    padding-bottom: 20px;
 `;
 
 const Name = styled.div`
