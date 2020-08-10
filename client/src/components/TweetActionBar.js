@@ -8,7 +8,6 @@ import {share} from 'react-icons-kit/feather/share'
 
 
 const TweetActionBar = ({id, isLiked}) => {
-    
     const reqObj = {
         method: 'PUT',
         headers:{
@@ -22,7 +21,7 @@ const TweetActionBar = ({id, isLiked}) => {
         fetch(`/api/tweet/${id}/like`, reqObj)
         .then(res => res.json())
         .then(res => console.log(res))
-        // window.location.reload();
+        window.location.reload();
     }
 
     return(
