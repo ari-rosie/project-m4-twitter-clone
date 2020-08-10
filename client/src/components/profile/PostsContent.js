@@ -4,7 +4,7 @@ import Tweet from '../Tweet';
 
 const PostsContent = ({content, userHandle}) => {
     const [feed, setFeed] = useState(null);
-    FetchData(`/api/${userHandle}/feed`, setFeed, userHandle);
+    FetchData(`/api/${userHandle}/feed`, setFeed, '');
     return (
         <>
             {content === 'tweets' &&

@@ -29,14 +29,8 @@ const TweetDetails = () => {
                         <Status>{tweet.tweet.status}</Status>
                         <div>{tweet.tweet.numLikes} Likes {tweet.tweet.numRetweets} Retweets</div>
                         {tweet.tweet.media.length > 0 && <PostImg src={tweet.tweet.media[0].url}/>}
-                        <TweetActionBar />
+                        <TweetActionBar id={tweet.tweet.id} isLiked={tweet.tweet.isLiked}/>
                     </div>
-
-                    {/* <div>{tweet.tweet.status}</div>
-                    <div><Link to={`/${tweet.tweet.author.handle}`}>{tweet.tweet.author.displayName}</Link></div>
-                    <div>{tweet.tweet.timestamp}</div>
-                    <div>{tweet.tweet.numLikes} Likes {tweet.tweet.numRetweets} Retweets</div>
-                    <TweetActionBar /> */}
                 </>
             }
 

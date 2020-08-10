@@ -24,6 +24,8 @@ export const CurrentUserProvider = ({children}) => {
         // eslint-disable-next-line
     }, []);
 
+    
+
     return <CurrentUserContext.Provider value={{currentUser, status, setStatus}}>{children}</CurrentUserContext.Provider>
 };
 

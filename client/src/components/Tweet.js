@@ -6,15 +6,25 @@ import moment from 'moment';
 import TweetActionBar from './TweetActionBar';
 
 const Tweet = ({data}) => {
-    const { id, status, timestamp, author, numLikes, numRetweets, author: {avatarSrc}, media } = data;
+    const { 
+        isLiked, 
+        id, 
+        status, 
+        timestamp, 
+        author, 
+        numLikes, 
+        numRetweets, 
+        author: {avatarSrc}, 
+        media 
+    } = data;
     let history = useHistory();
 
     const handleClick = (url) => {
         history.push(url);
     };
-
     return (
-        <Wrapper onClick={() => handleClick(`/tweet/${id}`)}> 
+        <Wrapper>
+        <PostDiv onClick={() => handleClick(`/tweet/${id}`)}> 
             <ProfilePic src={avatarSrc}/>
             <div>
                 <Author>
@@ -24,17 +34,28 @@ const Tweet = ({data}) => {
                 <Status>{status}</Status>
                 <div>{numLikes} Likes {numRetweets} Retweets</div>
                 {media.length > 0 && <PostImg src={media[0].url}/>}
-                <TweetActionBar />
             </div>
+        </PostDiv>
+        <ActionDiv>
+            <TweetActionBar id={id} isLiked={isLiked}/>
+        </ActionDiv>
         </Wrapper>
+
     );
 };
 
+const ActionDiv = styled.div`
+    padding-left: 70px;
+`;
+
 const Wrapper = styled.div`
-    border: solid 0.5px grey;
+    border: solid 0.5px lightgrey;
+    cursor: default;
+`;
+
+const PostDiv = styled.div`
     padding: 10px;
     display: flex;
-    cursor: default;
 `;
 
 const ProfilePic = styled.img`

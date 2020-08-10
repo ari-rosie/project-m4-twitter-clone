@@ -35,31 +35,57 @@ const StatusInput = () => {
             <h1>Home</h1>
             <Avatar src={avatarSrc} alt={'avatar'}/>
             <textarea placeholder="What's happening?" value={input} onChange={(e) => handleTyping(e)}/>
-            <div>{charLeft}characters</div>
-            <button onClick={() => handleSendStatus()}>Meow</button>
+            <Char>
+                {charLeft} characters
+                <button onClick={() => handleSendStatus()}>Meow</button>
+            </Char>
         </Wrapper>
     );
 
 };
 
 const Wrapper = styled.div`
+    padding-bottom: 20px;
     textarea {
         border: none;
         resize: none;
         width: 400px;
+
+        &:focus {
+            outline: none;
+        }
+
     }
 
     button {
-        background-color: ${COLORS.primary};
+        background-color: ${COLORS.light_primary};
         color: white;
+        margin-left: 20px;
+        border-radius: 8px;
+        border: none;
+        padding: 3px 2px;
+        font-weight: bold;
+    }
+
+    h1 {
+        padding: 30px 10px;
+        border-bottom: grey solid 1px;
+        font-size: 1.3em;
+        margin-bottom: 20px;
     }
 `;
 
 const Avatar = styled.img`
     width: 60px;
     border-radius: 50%;
+    padding-left: 10px;
 `;
 
-
+const Char = styled.div`
+    color: lightgray;
+    font-size: 0.7em;
+    text-align: right;
+    padding-right: 20px;
+`;
 
 export default StatusInput;
